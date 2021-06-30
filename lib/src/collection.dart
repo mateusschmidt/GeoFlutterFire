@@ -90,7 +90,7 @@ class GeoFireCollectionRef {
 
     Iterable<Stream<List<DistanceDocSnapshot>>> queries = area.map((hash) {
       final tempQuery = _queryPoint(hash, field);
-      return _createStream(tempQuery).map((QuerySnapshot querySnapshot) {
+      return _createStream(tempQuery).map((querySnapshot) {
         return querySnapshot.docs
             .map((element) => DistanceDocSnapshot(element, null))
             .toList();
@@ -159,7 +159,7 @@ class GeoFireCollectionRef {
   }
 
   /// create an observable for [ref], [ref] can be [Query] or [CollectionReference]
-  Stream<QuerySnapshot> _createStream(var ref) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> _createStream(var ref) {
     return ref.snapshots();
   }
 }
